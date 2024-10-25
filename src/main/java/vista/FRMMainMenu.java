@@ -4,11 +4,9 @@
  */
 package vista;
 
-import controlador.Controlador;
-import java.awt.BorderLayout;
+import controlador.ControladorPrincipal;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,7 +14,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,7 +27,7 @@ import javax.swing.JPanel;
 public class FRMMainMenu extends JFrame
 {
  
-    public FRMMainMenu(Controlador controlador)
+    public FRMMainMenu(ControladorPrincipal controlador)
     {
         
     JLayeredPane layeredPane = new JLayeredPane();

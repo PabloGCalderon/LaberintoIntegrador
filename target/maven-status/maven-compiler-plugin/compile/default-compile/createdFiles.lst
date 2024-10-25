@@ -1,15 +1,19 @@
+modelo\Elemento.class
 vista\FRMHistoria$2.class
 vista\FRMMainMenu$4.class
 vista\FRMSalir$3.class
 vista\FRMPausa$2.class
+controlador\ControladorLaberinto.class
 vista\FRMInstrucciones$2.class
 vista\FRMMainMenu.class
+modelo\Laberinto.class
 vista\FRMMainMenu$1.class
 vista\FRMHistoria$1.class
-controlador\Controlador.class
 vista\FRMMainMenu$3.class
 vista\FRMPausa$3.class
+controlador\ControladorPrincipal.class
 vista\FRMInstrucciones$1.class
+modelo\Enemigo.class
 vista\FRMMainMenu$5.class
 vista\FRMPausa.class
 vista\FRMJuego$2.class
@@ -22,4 +26,5 @@ vista\FRMMainMenu$2.class
 vista\FRMPausa$1.class
 vista\FRMSalir.class
 vista\FRMHistoria.class
+modelo\Personaje.class
 vista\FRMJuego.class

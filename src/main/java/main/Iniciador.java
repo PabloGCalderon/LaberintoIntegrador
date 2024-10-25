@@ -4,7 +4,7 @@
  */
 package main;
 
-import controlador.Controlador;
+import controlador.ControladorPrincipal;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Iniciador
 {
     
      public static void main(String[] args) {
-       Controlador controlador = new Controlador();
+       ControladorPrincipal controlador = new ControladorPrincipal();
         controlador.mostrarMainMenu();
         
     }

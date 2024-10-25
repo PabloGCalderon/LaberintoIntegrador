@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.Controlador;
+import controlador.ControladorPrincipal;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,14 +26,17 @@ import javax.swing.JPanel;
  */
 public class FRMHistoria extends JFrame
 {
-    public FRMHistoria(Controlador controlador) {
-        setTitle("Instrucciones");
-        setSize(1200, 900);
+    public FRMHistoria(ControladorPrincipal controlador) {
+        setTitle("Historia");
+        setSize(1270, 1061);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        setLayout(new BorderLayout());
+        setUndecorated(true); // Elimina bordes y decoraciones
+        setBackground(new Color(0, 0, 0, 0)); // Hace el fondo del JFrame transparente
 
+        setLayout(new BorderLayout());
+        
         JPanel southPanel = new JPanel(new GridBagLayout());
         
         GridBagConstraints gbc = new GridBagConstraints();
@@ -52,7 +55,6 @@ public class FRMHistoria extends JFrame
         btnVolver.setContentAreaFilled(false);  // Asegura que el área del contenido sea transparente
         btnVolver.setBorderPainted(false);  // Elimina el borde del botón para que no interfiera con la transparencia
 
-        
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,11 +62,9 @@ public class FRMHistoria extends JFrame
             }
         });
         
-        
        southPanel.add(btnVolver,gbc); 
+       southPanel.setOpaque(false);
        add(southPanel, BorderLayout.SOUTH);
-       
-        
         
         JPanel rightPanel = new JPanel() {
             @Override
@@ -75,9 +75,7 @@ public class FRMHistoria extends JFrame
             }
         };
         
-      
+        rightPanel.setOpaque(false);
         add(rightPanel,BorderLayout.CENTER);
-     
-        
     }
 }

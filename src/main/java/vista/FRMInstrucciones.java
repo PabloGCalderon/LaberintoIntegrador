@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.Controlador;
+import controlador.ControladorPrincipal;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,13 +26,16 @@ import javax.swing.JPanel;
  */
 public class FRMInstrucciones extends JFrame
 {
-     public FRMInstrucciones(Controlador controlador) {
+     public FRMInstrucciones(ControladorPrincipal controlador) {
         setTitle("Instrucciones");
-        setSize(1200, 900);
+        setSize(1270, 1061);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         setLayout(new BorderLayout());
+        
+         setUndecorated(true); // Opcional: elimina bordes y decoraciones
+        setBackground(new Color(0, 0, 0, 0)); // Hace el fondo del JFrame transparente
 
         JPanel southPanel = new JPanel(new GridBagLayout());
         
@@ -60,7 +63,7 @@ public class FRMInstrucciones extends JFrame
             }
         });
         
-        
+       southPanel.setOpaque(false);
        southPanel.add(btnVolver,gbc); 
        add(southPanel, BorderLayout.SOUTH);
        
@@ -75,7 +78,7 @@ public class FRMInstrucciones extends JFrame
             }
         };
         
-      
+        rightPanel.setOpaque(false);
         add(rightPanel,BorderLayout.CENTER);
      
         

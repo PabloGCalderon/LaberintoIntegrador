@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.Controlador;
+import controlador.ControladorPrincipal;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,21 +28,25 @@ import javax.swing.JPanel;
 public class FRMPausa extends JFrame
 {
     
-     public FRMPausa(Controlador controlador) {
+     public FRMPausa(ControladorPrincipal controlador) {
       JLayeredPane layeredPane = new JLayeredPane();
-    layeredPane.setPreferredSize(new Dimension(1200, 1080));
+    layeredPane.setPreferredSize(new Dimension(1270, 1061));
 
     setTitle("Pausa");
     setSize(1200, 1080);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     setLayout(new BorderLayout());
+    
+     setUndecorated(true); // Opcional: elimina bordes y decoraciones
+     setBackground(new Color(0, 0, 0, 0)); // Hace el fondo del JFrame transparente
 
     // Crear el panel norte
     JPanel NorthPanel = new JPanel(new GridBagLayout());
     NorthPanel.setOpaque(false); // Hacer el panel transparente
     NorthPanel.setBounds(0, 200, 1200, 1080); // Posicionar en la parte superior
 
+    //
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.gridx = 0;
     gbc.gridy = GridBagConstraints.RELATIVE;
@@ -86,8 +90,10 @@ public class FRMPausa extends JFrame
 
     // Agregar el botón al panel norte
     NorthPanel.add(btnReanudar, gbc);
-    NorthPanel.add(btnSalirMenu, gbc);
-
+    NorthPanel.add(btnSalirMenu, gbc); 
+    NorthPanel.setOpaque(false);
+    
+    
     // Crear el panel de fondo
     JPanel rightPanel = new JPanel() {
         @Override
@@ -97,7 +103,7 @@ public class FRMPausa extends JFrame
             g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
         }
     };
-
+    rightPanel.setOpaque(false);
     rightPanel.setLayout(null); // Usar layout null para posicionar manualmente
     rightPanel.setBounds(0, 0, 1200, 1080); // Posicionar el panel en toda la ventana
     layeredPane.add(rightPanel, Integer.valueOf(0)); // Agregar a la capa 0 (fondo)

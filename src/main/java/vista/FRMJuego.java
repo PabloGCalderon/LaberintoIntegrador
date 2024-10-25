@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.Controlador;
+import controlador.ControladorPrincipal;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,7 +28,7 @@ import javax.swing.JPanel;
 public class FRMJuego extends JFrame
 {
     
-     public FRMJuego(Controlador controlador) {
+     public FRMJuego(ControladorPrincipal controlador) {
          
             JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1920, 1080));
@@ -90,5 +90,8 @@ public class FRMJuego extends JFrame
 
         // Agregar el layeredPane al marco
         add(layeredPane, BorderLayout.CENTER);
+        
+        
+        
     }
 }

@@ -4,19 +4,17 @@
  */
 package vista;
 
-import controlador.Controlador;
+import controlador.ControladorPrincipal;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,13 +26,16 @@ import javax.swing.JPanel;
  */
 public class FRMSalir extends JFrame
 {
-    public FRMSalir(Controlador controlador) {
-        setTitle("Instrucciones");
-        setSize(1200, 900);
+    public FRMSalir(ControladorPrincipal controlador) {
+        setTitle("Salir");
+        setSize(1200, 980);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         setLayout(new BorderLayout());
+        
+         setUndecorated(true); // Opcional: elimina bordes y decoraciones
+        setBackground(new Color(0, 0, 0, 0)); // Hace el fondo del JFrame transparente
 
         JPanel southPanel = new JPanel(new FlowLayout());
       
@@ -43,7 +44,8 @@ public class FRMSalir extends JFrame
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = GridBagConstraints.RELATIVE;
-        gbc.insets = new Insets(20, 0, 20, 0);  // Espaciado entre los botones
+        gbc.insets = new Insets(-20, 0, 20, 0);  // Espaciado entre los botones
+     
         
         ImageIcon iconoNo = new ImageIcon(new ImageIcon("./src/main/resources/img/BotonNo.png").getImage().getScaledInstance(428, 154, Image.SCALE_SMOOTH));
         JButton btnNo = new JButton( iconoNo);
@@ -59,7 +61,6 @@ public class FRMSalir extends JFrame
          btnNo.setContentAreaFilled(false);  // Asegura que el área del contenido sea transparente
          btnNo.setBorderPainted(false);  // Elimina el borde del botón para que no interfiera con la transparencia
         
-       
          btnSi.setPreferredSize(buttonSize);
          btnSi.setBackground(new Color(0, 0, 0, 0));  // Fondo transparente
          btnSi.setOpaque(false);  // Elimina la opacidad del botón
@@ -84,8 +85,8 @@ public class FRMSalir extends JFrame
         
        southPanel.add(btnNo,gbc); 
        southPanel.add(btnSi,gbc); 
-          
-        add(southPanel, BorderLayout.SOUTH);
+       southPanel.setOpaque(false);
+       add(southPanel, BorderLayout.SOUTH);
         
         
         JPanel rightPanel = new JPanel() {
@@ -97,10 +98,8 @@ public class FRMSalir extends JFrame
             }
         };
         
-      
-        add(rightPanel,BorderLayout.CENTER);
-     
-        
+        rightPanel.setOpaque(false);
+        add(rightPanel,BorderLayout.CENTER);        
     }
     
 }
