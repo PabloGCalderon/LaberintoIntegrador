@@ -4,75 +4,79 @@
  */
 package controlador;
 
-import vista.FRMHistoria;
-import vista.FRMInstrucciones;
-import vista.FRMJuego;
-import vista.FRMMainMenu;
-import vista.FRMPausa;
-import vista.FRMSalir;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import vista.HistoriaGUI;
+import vista.InstruccionesGUI;
+import vista.JuegoGUI;
+import vista.MainMenuGUI;
+import vista.MenuPausaGUI;
+import vista.SalirGUI;
 
 
 /**
  *
  * @author pablo
  */
-public class ControladorPrincipal
+public class ControladorPrincipal implements ActionListener
 {
-    private FRMMainMenu frmMainMenu;
-    private FRMJuego frmJuego;
-    private FRMHistoria frmHistoria;
-    private FRMInstrucciones frmInstrucciones;
-    private FRMSalir frmSalir;
-    private FRMPausa frmPausa;
+    private MainMenuGUI mainMenuGUI;
+    private JuegoGUI juegoGUI;
+    private HistoriaGUI historiaGUI;
+    private InstruccionesGUI instruccionesGUI;
+    private SalirGUI salirGUI;
+    private MenuPausaGUI menuPausaGUI;
     public ControladorPrincipal()
     { 
-      frmMainMenu = new FRMMainMenu(this);
-      frmInstrucciones= new FRMInstrucciones(this);
-      frmHistoria= new FRMHistoria(this);
-      frmSalir= new FRMSalir(this);
-      frmJuego= new FRMJuego(this);
-      frmPausa= new FRMPausa(this); 
+     mainMenuGUI = new MainMenuGUI(this);
+       instruccionesGUI= new InstruccionesGUI(this);
+       historiaGUI= new HistoriaGUI(this);
+       salirGUI= new SalirGUI(this);
+       juegoGUI= new JuegoGUI(this);
+       menuPausaGUI= new MenuPausaGUI(this); 
     }
 
-  
-   public void mostrarMainMenu() 
-   {
-        frmMainMenu.setVisible(true);
-    }  
-   public void mostrarHistoria() 
-   {
-      
-        frmHistoria.setVisible(true);
-    }  
-   public void mostrarInstrucciones() 
-   {
-    
-        frmInstrucciones.setVisible(true);
-
-    }  
-   public void mostrarSalir() 
-   {
-       
-        frmSalir.setVisible(true);
-
-    }  
-    public void mostrarJuego() 
-   {
-        frmMainMenu.setVisible(false);
-        frmJuego.setVisible(true);
-
-    }  
-    public void menuPausa() 
-   {
-       
-        frmPausa.setVisible(true);
-
-    }  
-
-     public void regresarAlMenu() {
-        frmHistoria.setVisible(false);
-        frmInstrucciones.setVisible(false);
-        frmMainMenu.setVisible(true);
+    @Override
+    public void actionPerformed(ActionEvent e) 
+    {
+    switch(e.getActionCommand()){
+                    case "btnInstrucciones":
+                           instruccionesGUI.setVisible(true);
+                           break;
+                    case "btnJugar":
+                          juegoGUI.setVisible(true);
+                          mainMenuGUI.setVisible(false);
+                           break;
+                    case "btnHistoria":
+                           historiaGUI.setVisible(true);
+                           break;
+                    case "btnSalir":
+                           salirGUI.setVisible(true);
+                           break;
+                    case "btnPausa":
+                            menuPausaGUI.setVisible(true);
+                            break;
+                            
+                    case "btnVolverHistoria":
+                            historiaGUI.setVisible(false);
+                            break;
+                    case "btnVolverInstrucciones":
+                            instruccionesGUI.setVisible(false);
+                            break;
+                    case "btnNo":
+                            salirGUI.setVisible(false);
+                            break;
+                    case "btnSi":
+                             System.exit(0);
+                            break;
+                    case "btnReanudar":
+                            menuPausaGUI.setVisible(false);
+                            break;
+                    case "btnVolverAlMenu":
+                            menuPausaGUI.setVisible(false);
+                            mainMenuGUI.setVisible(true);
+                            break;
+             }
     }
 
 }

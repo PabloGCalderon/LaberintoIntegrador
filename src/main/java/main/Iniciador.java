@@ -14,9 +14,7 @@ public class Iniciador
 {
     
      public static void main(String[] args) {
-       ControladorPrincipal controlador = new ControladorPrincipal();
-        controlador.mostrarMainMenu();
-        
+       ControladorPrincipal controlador = new ControladorPrincipal();  
     }
     
 }
