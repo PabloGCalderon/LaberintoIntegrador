@@ -23,36 +23,35 @@ public class Enemigo
  
  public void movAleatorio(int[][] laberinto)
  {
-     int mover = random.nextInt(1);
-     switch(mover)
-     {
-         case 0://mover arriba
-             if(yEnemigo > 0 && laberinto[yEnemigo - 1][xEnemigo]==0)
-             {
-                 yEnemigo--;
-             }
-           break;
-         case 1://Mver abajo
-              if(yEnemigo < laberinto.length -1 && laberinto[yEnemigo + 1][xEnemigo]==0)
-             {
-                 yEnemigo++;
-             }
-           break;
-           
-         case 2://Mover izq
-              if(xEnemigo > 0 && laberinto[yEnemigo][xEnemigo-1]==0)
-             {
-                 xEnemigo--;
-             }
-             break;
-             
-         case 3://mover der
-             if(xEnemigo <  laberinto[0].length - 1 && laberinto[yEnemigo][xEnemigo+1]==0)
-             {
-                 xEnemigo++;
-             }
-             break;
-     }
+    Random rand = new Random();
+        int direccion = rand.nextInt(4); 
+
+        
+        int nuevX = xEnemigo;
+        int nuevY = yEnemigo;
+
+        switch (direccion) {
+            case 0: // Arriba
+                nuevY--;
+                break;
+            case 1: // Abajo
+                nuevY++;
+                break;
+            case 2: // Izquierda
+                nuevX--;
+                break;
+            case 3: // Derecha
+                nuevX++;
+                break;
+        }
+
+    
+        if (nuevY >= 0 && nuevY < laberinto.length && nuevX >= 0 && nuevX < laberinto[0].length) {
+            if (laberinto[nuevY][nuevX] == 0) { 
+                xEnemigo = nuevX;
+                yEnemigo = nuevY;
+            }
+        }
 
  }
 
