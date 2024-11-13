@@ -10,7 +10,7 @@ package modelo;
  */
 public class MatrizLaberinto {
     
-     private int [][] laberinto;
+    private int [][] laberinto;
     private Personaje personaje;
     private Enemigo enemigo;
     
@@ -33,8 +33,8 @@ public class MatrizLaberinto {
         
         //Inicializar al personaje y al enemigo
         
-       //  personaje = new Personaje(0,0);
-       // enemigo = new Enemigo(5,9);
+         personaje = new Personaje(1,1);
+         enemigo = new Enemigo(5,9);
     }
     
     public int [][] getlaberinto(){

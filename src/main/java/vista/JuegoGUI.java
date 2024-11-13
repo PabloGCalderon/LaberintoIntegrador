@@ -63,7 +63,7 @@ public class JuegoGUI extends javax.swing.JFrame {
             .addGap(0, 600, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panelJuego1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, 600, 600));
+        getContentPane().add(panelJuego1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 600, 600));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Laberinto.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

@@ -26,6 +26,7 @@ public class ControladorPrincipal implements ActionListener
     private InstruccionesGUI instruccionesGUI;
     private SalirGUI salirGUI;
     private MenuPausaGUI menuPausaGUI;
+    
     public ControladorPrincipal()
     { 
      mainMenuGUI = new MainMenuGUI(this);
