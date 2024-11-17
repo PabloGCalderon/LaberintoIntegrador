@@ -21,6 +21,7 @@ public class ControladorLaberinto implements KeyListener
     private PanelJuego panelJuego;
     private Enemigo enemigo;
     private Personaje personaje;
+    private Hilo hilo;
      
 
     public ControladorLaberinto(MatrizLaberinto matriz, PanelJuego panelJuego, Enemigo enemigo, Personaje personaje) {
@@ -28,6 +29,8 @@ public class ControladorLaberinto implements KeyListener
         this.panelJuego = panelJuego;
         this.enemigo = enemigo;
         this.personaje = personaje;
+        hilo=new Hilo(this,matriz,enemigo,panelJuego);
+        hilo.start();
     }
     
 

@@ -23,10 +23,10 @@ public class Enemigo
  
  public void movAleatorio(int[][] laberinto)
  {
-    Random rand = new Random();
-        int direccion = rand.nextInt(4); 
+      Random rand = new Random();
+        int direccion = rand.nextInt(4); // Genera un número aleatorio entre 0 y 3
 
-        
+        // Variables para la nueva posición
         int nuevX = xEnemigo;
         int nuevY = yEnemigo;
 
@@ -45,15 +45,14 @@ public class Enemigo
                 break;
         }
 
-    
+        // Verificar si la nueva posición es válida (dentro del laberinto y no una pared)
         if (nuevY >= 0 && nuevY < laberinto.length && nuevX >= 0 && nuevX < laberinto[0].length) {
-            if (laberinto[nuevY][nuevX] == 0) { 
+            if (laberinto[nuevY][nuevX] == 0) { // Si la celda es un camino (0)
                 xEnemigo = nuevX;
                 yEnemigo = nuevY;
             }
         }
-
- }
+    }
 
     public int getxEnemigo() {
         return xEnemigo;

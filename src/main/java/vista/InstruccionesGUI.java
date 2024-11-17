@@ -5,6 +5,7 @@
 package vista;
 
 import controlador.ControladorPrincipal;
+import java.awt.Color;
 
 /**
  *
@@ -16,10 +17,17 @@ public class InstruccionesGUI extends javax.swing.JFrame {
      * Creates new form InstruccionesGUIU
      */
     public InstruccionesGUI(ControladorPrincipal controlador) {
-        initComponents();
-        escuchar(controlador);
         
+        setUndecorated(true); // Quita la decoración del frame.
+        setBackground(new Color(0, 0, 0, 0)); // Permite transparencia
+        
+        initComponents();
+        escuchar(controlador); // Configurar los listeners
         setLocationRelativeTo(null);
+
+        // Ajustar propiedades del JFrame
+        setLocationRelativeTo(null); // Centrar ventana
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
       public void escuchar(ControladorPrincipal controlador)
@@ -30,6 +38,7 @@ public class InstruccionesGUI extends javax.swing.JFrame {
 
        }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

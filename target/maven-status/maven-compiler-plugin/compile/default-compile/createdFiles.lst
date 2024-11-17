@@ -8,6 +8,7 @@ vista\SalirGUI.class
 vista\MainMenuGUI.class
 vista\SalirGUI$1.class
 modelo\MatrizLaberinto.class
+controlador\Hilo.class
 vista\DerrotaGUI.class
 vista\PanelJuego.class
 vista\MenuPausaGUI.class

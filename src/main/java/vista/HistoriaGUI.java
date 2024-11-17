@@ -19,9 +19,9 @@ public class HistoriaGUI extends javax.swing.JFrame {
     public HistoriaGUI(ControladorPrincipal controlador) {
         initComponents();
         escuchar(controlador);
-        setLocationRelativeTo(null);
-       
         
+        setLocationRelativeTo(null);
+        setBackground((new Color(0, 0, 0, 0)));
     }
     
     
@@ -53,10 +53,11 @@ public class HistoriaGUI extends javax.swing.JFrame {
         btnVolverHistoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BotonVolver.png"))); // NOI18N
         btnVolverHistoria.setBorderPainted(false);
         btnVolverHistoria.setContentAreaFilled(false);
-        getContentPane().add(btnVolverHistoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 720, -1, -1));
+        getContentPane().add(btnVolverHistoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 760, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/MenuHistoria.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 1160, 1050));
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

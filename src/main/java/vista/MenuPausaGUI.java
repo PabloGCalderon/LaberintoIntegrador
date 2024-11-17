@@ -5,6 +5,7 @@
 package vista;
 
 import controlador.ControladorPrincipal;
+import java.awt.Color;
 
 /**
  *
@@ -16,10 +17,16 @@ public class MenuPausaGUI extends javax.swing.JFrame {
      * Creates new form MenuPausaGUI
      */
     public MenuPausaGUI(ControladorPrincipal controlador) {
-        initComponents();
-        escuchar(controlador);
+       setUndecorated(true); // Quita la decoración del frame.
+        setBackground(new Color(0, 0, 0, 0)); // Permite transparencia
         
+        initComponents();
+        escuchar(controlador); // Configurar los listeners
         setLocationRelativeTo(null);
+
+        // Ajustar propiedades del JFrame
+        setLocationRelativeTo(null); // Centrar ventana
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
       public void escuchar(ControladorPrincipal controlador)
      {

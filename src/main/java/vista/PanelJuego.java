@@ -31,22 +31,22 @@ public class PanelJuego extends javax.swing.JPanel
         
         initComponents();
         
-        // Crear la matriz y obtener personaje y enemigo
+    
         this.matriz = new MatrizLaberinto();
         this.personaje = matriz.getPersonaje();
         this.enemigo = matriz.getEnemigo();
         
-        // Inicializar imágenes
+ 
         cargarImagenes();
         
-        // Inicializar controlador y asignarlo como KeyListener
+    
         this.controladorLaberinto = new ControladorLaberinto(matriz, this, enemigo, personaje);
         this.addKeyListener(controladorLaberinto);
         
-        // Configuración del panel
+     
         this.setPreferredSize(new Dimension(400, 400));
         this.setFocusable(true);
-        this.requestFocusInWindow(); // Para asegurar que el panel reciba eventos de teclado
+        this.requestFocusInWindow();
     }
     
     
@@ -68,9 +68,9 @@ public class PanelJuego extends javax.swing.JPanel
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Dibuja el laberinto
+       
         int[][] laberinto = matriz.getlaberinto();
-        int size = 50; // Tamaño de cada celda
+        int size = 50; 
 
         for (int y = 0; y < laberinto.length; y++) {
             for (int x = 0; x < laberinto[y].length; x++) {
@@ -91,7 +91,7 @@ public class PanelJuego extends javax.swing.JPanel
             }
         }
 
-        // Dibuja al personaje y al enemigo en sus posiciones
+      
         int personajeX = personaje.getxPersonaje();
         int personajeY = personaje.getyPersonaje();
         g.drawImage(imgpersonaje, personajeX * size, personajeY * size, size, size, this);
