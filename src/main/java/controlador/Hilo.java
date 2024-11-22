@@ -35,6 +35,7 @@ public class Hilo extends Thread
         {
             try {
                  enemigo.movAleatorio(matriz.getlaberinto());
+                 controlador.muerteEnemigo();
                  panelJuego.repaint();
                 sleep(200);
             } catch (InterruptedException ex) {

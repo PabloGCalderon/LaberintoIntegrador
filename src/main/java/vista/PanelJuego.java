@@ -19,36 +19,36 @@ import modelo.Personaje;
  */
 public class PanelJuego extends javax.swing.JPanel 
 {
-    
-    private MatrizLaberinto matriz;
+     private MatrizLaberinto matriz;
     private Personaje personaje;
     private Enemigo enemigo;
+    private DerrotaGUI derrotaGUI;
+    private VictoriaGUI victoriaGUI;
     private ControladorLaberinto controladorLaberinto;
     private Image imgpersonaje, imgenemigo;
-    private Image camino, montaña, agua, arbol;
+    private Image camino, montaña, agua, arbol, cuerno;
 
     public PanelJuego() {
-        
         initComponents();
-        
-    
+
+        // Inicializa el objeto derrotaGUI
+        this.derrotaGUI = new DerrotaGUI(controladorLaberinto);
+        this.victoriaGUI = new VictoriaGUI(controladorLaberinto); 
+
         this.matriz = new MatrizLaberinto();
         this.personaje = matriz.getPersonaje();
         this.enemigo = matriz.getEnemigo();
-        
- 
+
         cargarImagenes();
-        
-    
-        this.controladorLaberinto = new ControladorLaberinto(matriz, this, enemigo, personaje);
+
+        // Ahora puedes inicializar el controlador
+        this.controladorLaberinto = new ControladorLaberinto(matriz, this, enemigo, personaje, derrotaGUI, victoriaGUI);
         this.addKeyListener(controladorLaberinto);
-        
-     
+
         this.setPreferredSize(new Dimension(400, 400));
         this.setFocusable(true);
         this.requestFocusInWindow();
     }
-    
     
     public void addNotify() {
         super.addNotify();
@@ -60,10 +60,10 @@ public class PanelJuego extends javax.swing.JPanel
         arbol = new ImageIcon(getClass().getResource("/img/Arbol.png")).getImage();
         agua = new ImageIcon(getClass().getResource("/img/aguaLaberinto.png")).getImage();
         montaña = new ImageIcon(getClass().getResource("/img/Montaña.png")).getImage();
+        cuerno = new ImageIcon(getClass().getResource("/img/ObjetoVictoria.png")).getImage();
         imgpersonaje = new ImageIcon(getClass().getResource("/img/PersonajeMain.png")).getImage();
-        imgenemigo = new ImageIcon(getClass().getResource("/img/Solaire.png")).getImage();
+        imgenemigo = new ImageIcon(getClass().getResource("/img/Solaire.png")).getImage(); 
     }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -86,6 +86,9 @@ public class PanelJuego extends javax.swing.JPanel
                         break;
                     case 3:
                         g.drawImage(montaña, x * size, y * size, size, size, this);
+                        break;
+                    case 4:
+                        g.drawImage(cuerno, x * size, y * size, size, size, this);
                         break;
                 }
             }

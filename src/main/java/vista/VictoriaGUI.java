@@ -4,6 +4,9 @@
  */
 package vista;
 
+import controlador.ControladorLaberinto;
+import java.awt.Color;
+
 /**
  *
  * @author pablo
@@ -13,9 +16,30 @@ public class VictoriaGUI extends javax.swing.JFrame {
     /**
      * Creates new form VictoriaGUI
      */
-    public VictoriaGUI() {
+   public VictoriaGUI(ControladorLaberinto controlador) 
+    {
+        setUndecorated(true); // Quita la decoración del frame.
+        setBackground(new Color(0, 0, 0, 0)); // Permite transparencia
+        
         initComponents();
+        escuchar(controlador);
+        
+        setLocationRelativeTo(null);
+
+        // Ajustar propiedades del JFrame
+        setLocationRelativeTo(null); // Centrar ventana
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
+    
+    public void escuchar(ControladorLaberinto controlador)
+    { 
+        btnReintentarVictoria.setActionCommand("btnReintentarVictoria");
+        btnReintentarVictoria.addActionListener(controlador);
+         
+        btnVolverAlMenuVictoria.setActionCommand("btnVolverAlMenuVictoria");
+        btnVolverAlMenuVictoria.addActionListener(controlador);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,18 +50,25 @@ public class VictoriaGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        btnVolverAlMenuVictoria = new javax.swing.JButton();
+        btnReintentarVictoria = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnVolverAlMenuVictoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BotonVolverMenu.png"))); // NOI18N
+        btnVolverAlMenuVictoria.setBorderPainted(false);
+        btnVolverAlMenuVictoria.setContentAreaFilled(false);
+        getContentPane().add(btnVolverAlMenuVictoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 640, -1, -1));
+
+        btnReintentarVictoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BotonReintentar.png"))); // NOI18N
+        btnReintentarVictoria.setBorderPainted(false);
+        btnReintentarVictoria.setContentAreaFilled(false);
+        getContentPane().add(btnReintentarVictoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PantallaVictoria.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -48,5 +79,8 @@ public class VictoriaGUI extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReintentarVictoria;
+    private javax.swing.JButton btnVolverAlMenuVictoria;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

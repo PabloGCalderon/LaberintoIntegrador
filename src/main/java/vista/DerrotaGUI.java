@@ -4,6 +4,9 @@
  */
 package vista;
 
+import controlador.ControladorLaberinto;
+import java.awt.Color;
+
 /**
  *
  * @author pablo
@@ -13,10 +16,29 @@ public class DerrotaGUI extends javax.swing.JFrame {
     /**
      * Creates new form DerrotaGUI
      */
-    public DerrotaGUI() {
+    public DerrotaGUI(ControladorLaberinto controlador) 
+    {
+        setUndecorated(true); // Quita la decoración del frame.
+        setBackground(new Color(0, 0, 0, 0)); // Permite transparencia
+        
         initComponents();
+        escuchar(controlador);
+        
+        setLocationRelativeTo(null);
+
+        // Ajustar propiedades del JFrame
+        setLocationRelativeTo(null); // Centrar ventana
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
+    public void escuchar(ControladorLaberinto controlador)
+    {
+        btnReintentarDerrota.setActionCommand("btnReintentarDerrota");
+        btnReintentarDerrota.addActionListener(controlador);
+         
+        btnVolverAlMenuDerrota.setActionCommand("btnVolverAlMenuDerrota");
+        btnVolverAlMenuDerrota.addActionListener(controlador);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,18 +48,25 @@ public class DerrotaGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        btnReintentarDerrota = new javax.swing.JButton();
+        btnVolverAlMenuDerrota = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnReintentarDerrota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BotonReintentar.png"))); // NOI18N
+        btnReintentarDerrota.setBorderPainted(false);
+        btnReintentarDerrota.setContentAreaFilled(false);
+        getContentPane().add(btnReintentarDerrota, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, -1, -1));
+
+        btnVolverAlMenuDerrota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BotonVolverMenu.png"))); // NOI18N
+        btnVolverAlMenuDerrota.setBorderPainted(false);
+        btnVolverAlMenuDerrota.setContentAreaFilled(false);
+        getContentPane().add(btnVolverAlMenuDerrota, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 650, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PantallaDerrota.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -48,5 +77,8 @@ public class DerrotaGUI extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReintentarDerrota;
+    private javax.swing.JButton btnVolverAlMenuDerrota;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
