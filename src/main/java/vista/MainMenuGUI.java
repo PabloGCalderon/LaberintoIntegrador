@@ -5,6 +5,7 @@
 package vista;
 
 import controlador.ControladorPrincipal;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -12,25 +13,27 @@ import controlador.ControladorPrincipal;
  */
 public class MainMenuGUI extends javax.swing.JFrame {
 
-     private InstruccionesGUI instruccionesGUI;
      
-    public MainMenuGUI( ControladorPrincipal controlador) {
+     
+    public MainMenuGUI( ControladorPrincipal controlador)
+    {
          initComponents();
          escuchar(controlador);
          setVisible(true);
     }
     
-     public void escuchar(ControladorPrincipal controlador){
-         
-         btnInstrucciones.setActionCommand("btnInstrucciones");
-         btnJugar.setActionCommand("btnJugar");
-         btnSalir.setActionCommand("btnSalir");
-         btnHistoria.setActionCommand("btnHistoria");
-        
-              btnInstrucciones.addActionListener(controlador);
-              btnJugar.addActionListener( controlador);
-              btnSalir.addActionListener( controlador);
-              btnHistoria.addActionListener( controlador);
+     public void escuchar(ControladorPrincipal controlador)
+     {
+
+    btnInstrucciones.setActionCommand("btnInstrucciones");
+    btnJugar.setActionCommand("btnJugar");
+    btnSalir.setActionCommand("btnSalir");
+    btnHistoria.setActionCommand("btnHistoria");
+
+    btnInstrucciones.addActionListener(controlador);
+    btnJugar.addActionListener(controlador);
+    btnSalir.addActionListener(controlador);
+    btnHistoria.addActionListener(controlador);
        }
 
     /**

@@ -29,30 +29,47 @@ public class PanelJuego extends javax.swing.JPanel
     private Image camino, montaña, agua, arbol, cuerno;
 
     public PanelJuego() {
+       
+        if (java.beans.Beans.isDesignTime()) 
+        {    
         initComponents();
-
-        // Inicializa el objeto derrotaGUI
+        }
+        if (java.beans.Beans.isDesignTime())
+        {
+            
+        matriz = new MatrizLaberinto();
+        this.personaje = matriz.getPersonaje();
+        this.enemigo = matriz.getEnemigo();
+        }
+        else
+        {
+        matriz = new MatrizLaberinto();
+        this.personaje = matriz.getPersonaje();
+        this.enemigo = matriz.getEnemigo();
+        this.controladorLaberinto = controladorLaberinto;
+        
         this.derrotaGUI = new DerrotaGUI(controladorLaberinto);
         this.victoriaGUI = new VictoriaGUI(controladorLaberinto); 
 
-        this.matriz = new MatrizLaberinto();
-        this.personaje = matriz.getPersonaje();
-        this.enemigo = matriz.getEnemigo();
+
 
         cargarImagenes();
 
-        // Ahora puedes inicializar el controlador
+  
         this.controladorLaberinto = new ControladorLaberinto(matriz, this, enemigo, personaje, derrotaGUI, victoriaGUI);
         this.addKeyListener(controladorLaberinto);
 
         this.setPreferredSize(new Dimension(400, 400));
         this.setFocusable(true);
         this.requestFocusInWindow();
+          
+    }
     }
     
-    public void addNotify() {
+    public void addNotify() 
+    {
         super.addNotify();
-        this.requestFocusInWindow(); // Solicitar foco después de ser añadido al contenedor
+        this.requestFocusInWindow(); 
     }
 
     private void cargarImagenes() {
@@ -68,6 +85,11 @@ public class PanelJuego extends javax.swing.JPanel
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+         if(java.beans.Beans.isDesignTime())
+        {
+            g.drawString("PanelJuego(diseno)", 10, 20);
+            return;
+        }
        
         int[][] laberinto = matriz.getlaberinto();
         int size = 50; 

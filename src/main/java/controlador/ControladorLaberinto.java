@@ -13,6 +13,7 @@ import modelo.MatrizLaberinto;
 import modelo.Personaje;
 import vista.DerrotaGUI;
 import vista.JuegoGUI;
+import vista.MainMenuGUI;
 import vista.PanelJuego;
 import vista.VictoriaGUI;
 
@@ -22,6 +23,9 @@ import vista.VictoriaGUI;
  */
 public class ControladorLaberinto implements KeyListener, ActionListener
 {
+    private HiloTemporizador hiloTemporizador;
+    private ControladorPrincipal controladorPrincipal;
+    private MainMenuGUI mainMenuGUI;
     private JuegoGUI juegoGUI;
     private DerrotaGUI derrotaGUI;
     private VictoriaGUI victoriaGUI;
@@ -31,20 +35,28 @@ public class ControladorLaberinto implements KeyListener, ActionListener
     private Personaje personaje;
     private Hilo hilo;
 
-
     public ControladorLaberinto(MatrizLaberinto matriz, PanelJuego panelJuego, Enemigo enemigo, Personaje personaje, DerrotaGUI derrotaGUI, 
             VictoriaGUI victoriaGUI)
     {
+        this.controladorPrincipal= controladorPrincipal;
         this.matriz = matriz;
         this.panelJuego = panelJuego;
         this.enemigo = enemigo;
         this.personaje = personaje;
         this.derrotaGUI = derrotaGUI;
-        this.victoriaGUI = victoriaGUI;
-        this.juegoGUI = juegoGUI;
+        this.victoriaGUI =victoriaGUI;
+        this.derrotaGUI = new DerrotaGUI(this);
+        this.victoriaGUI = new VictoriaGUI(this);
+        this.juegoGUI =  juegoGUI;
+        this.mainMenuGUI = mainMenuGUI;
         
-        hilo=new Hilo(this,matriz,enemigo,panelJuego);
+        
+        this.hiloTemporizador = hiloTemporizador;
+        
+        hilo=new Hilo(this,matriz,enemigo,panelJuego,controladorPrincipal);
         hilo.start();
+        
+       
     }
     
 
@@ -71,12 +83,14 @@ public class ControladorLaberinto implements KeyListener, ActionListener
 //            System.out.println("Funciona");
             break;  
        }
+       
         enemigo.movAleatorio(matriz.getlaberinto());
         panelJuego.repaint();
         panelJuego.requestFocusInWindow();
         muerteTrampa();
         muerteEnemigo();
         victoria();
+  
     }
     
     
@@ -87,7 +101,6 @@ public class ControladorLaberinto implements KeyListener, ActionListener
             System.out.println("Te atrapó Solaire");
             muerte = true;
         }
-
         if (muerte == true)
         {
             personaje.setxPersonaje(1);
@@ -96,6 +109,7 @@ public class ControladorLaberinto implements KeyListener, ActionListener
             enemigo.setxEnemigo(5);
             enemigo.setyEnemigo(9);
             
+            this.derrotaGUI = new DerrotaGUI(this);
             derrotaGUI.setVisible(true);
         }
         return muerte;
@@ -104,6 +118,7 @@ public class ControladorLaberinto implements KeyListener, ActionListener
         {
             if(personaje.isMuerte()==true)
             {
+            this.derrotaGUI = new DerrotaGUI(this);
             derrotaGUI.setVisible(true);
             
             personaje.setxPersonaje(1);
@@ -113,45 +128,106 @@ public class ControladorLaberinto implements KeyListener, ActionListener
             enemigo.setyEnemigo(9);
             }
         }
+      
         
-    public void victoria()
+   public void victoria()
     {
        if(personaje.isVictoria()==true)
             {
             victoriaGUI.setVisible(true);
-            
+            }   
+    }
+    
+    public void reiniciar()
+    {
+        
             personaje.setxPersonaje(1);
             personaje.setyPersonaje(1);
             
             enemigo.setxEnemigo(5);
             enemigo.setyEnemigo(9);
             
-            }   
+            
+            closeAllWindowsExcept(mainMenuGUI);
+            juegoGUI = new JuegoGUI(controladorPrincipal);
     }
+    
+    public void reintentar()
+    {
+        personaje.setVictoria(false);
+        personaje.setMuerte(false);
+        derrotaGUI.setVisible(false);
+        victoriaGUI.setVisible(false);
+        reiniciar();       
+    }
+    
+    
+    public void salirMenu() {
+
+   if (derrotaGUI != null) 
+    {
+        derrotaGUI.dispose();
+    }
+   
+    if (juegoGUI != null)
+    {
+        juegoGUI.dispose();
+    }
+    
+    if (mainMenuGUI != null)
+    {
+        mainMenuGUI.dispose();
+    }
+    
+    if (victoriaGUI != null) 
+    {
+        victoriaGUI.dispose();
+    }
+
+    }
+
 
      @Override
     public void actionPerformed(ActionEvent e) 
     {
    
-        switch (e.getActionCommand()) 
+       switch (e.getActionCommand()) 
         {
             case "btnReintentarDerrota":
-                derrotaGUI.setVisible(false);
+                System.out.println("FuncionaReintentarDerrota");
+                reintentar();
                 break;
 
            case "btnVolverAlMenuDerrota":
-                juegoGUI.setVisible(true);
-                derrotaGUI.setVisible(false);
+              System.out.println("FuncionaVolverDerrota");
+              salirMenu();
+              //closeAllWindowsExcept(mainMenuGUI); // Cierra todo excepto el menú principal
+              new ControladorPrincipal();
                 break;
                 
-             case "btnReintentaVictoria":
-                derrotaGUI.setVisible(false);
+             case "btnReintentarVictoria":
+                 System.out.println("FuncionaReintentarVictoria");
+                reintentar();
                 break;
 
            case "btnVolverAlMenuVictoria":
-                juegoGUI.setVisible(true);
-                derrotaGUI.setVisible(false);
+              salirMenu();
+              //closeAllWindowsExcept(mainMenuGUI); // Cierra todo excepto el menú principal
+              new ControladorPrincipal();
                 break;
+        }
+    }
+     /**
+     * Método para cerrar todas las ventanas activas excepto una específica.
+     *
+     * @param excludeWindow La ventana que no debe cerrarse (puede ser null).
+     */
+    private void closeAllWindowsExcept(java.awt.Window excludeWindow) {
+        java.awt.Window[] windows = java.awt.Window.getWindows();
+        for (java.awt.Window window : windows) {
+            if (window.isVisible() && window != excludeWindow) {
+                window.dispose();
+            }
         }
     }
     @Override

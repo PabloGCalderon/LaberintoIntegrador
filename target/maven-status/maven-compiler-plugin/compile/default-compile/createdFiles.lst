@@ -1,9 +1,11 @@
 vista\HistoriaGUI.class
 vista\JuegoGUI.class
+controlador\HiloTemporizador$2.class
 controlador\ControladorLaberinto.class
 vista\JuegoGUI$1.class
 vista\InstruccionesGUI.class
 modelo\Enemigo.class
+controlador\HiloTemporizador$1.class
 vista\SalirGUI.class
 vista\MainMenuGUI.class
 vista\SalirGUI$1.class
@@ -12,6 +14,7 @@ controlador\Hilo.class
 vista\DerrotaGUI.class
 vista\PanelJuego.class
 vista\MenuPausaGUI.class
+controlador\HiloTemporizador.class
 controlador\ControladorPrincipal.class
 vista\VictoriaGUI.class
 main\Iniciador.class

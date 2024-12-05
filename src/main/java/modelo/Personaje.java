@@ -48,14 +48,14 @@ public class Personaje
         
        if (nuevY >= 0 && nuevY < laberinto.length && nuevX >= 0 && nuevX < laberinto[0].length) {
 
-        // Comprobar si el personaje cayó en el agua (valor 2) o en una celda especial (valor 4)
+        
         if (laberinto[nuevY][nuevX] == 2) {
             
             setxPersonaje(1);
             setyPersonaje(1);
             
             setMuerte(true);
-        } else if (laberinto[nuevY][nuevX] == 4) { // Verifica si la celda es 4 (puede ser una trampa, obstáculo, etc.)
+        } else if (laberinto[nuevY][nuevX] == 4) { 
          
             
             setxPersonaje(1);
@@ -63,9 +63,9 @@ public class Personaje
             
             setVictoria(true);
         } else {
-            // Mover el personaje solo si la celda no es agua, trampa, ni está fuera de los límites
+           
             int valorCelda = laberinto[nuevY][nuevX];
-            if (valorCelda == 0) {  // Si la celda es válida para el movimiento (por ejemplo, 0 es camino libre)
+            if (valorCelda == 0) {  
                 xPersonaje = nuevX;
                 yPersonaje = nuevY;
             }

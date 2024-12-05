@@ -17,15 +17,15 @@ public class SalirGUI extends javax.swing.JFrame {
      * Creates new form SalirGUI
      */
     public SalirGUI(ControladorPrincipal controlador) {
-        setUndecorated(true); // Quita la decoración del frame.
-        setBackground(new Color(0, 0, 0, 0)); // Permite transparencia
+        setUndecorated(true); 
+        setBackground(new Color(0, 0, 0, 0)); 
         
         initComponents();
-        escuchar(controlador); // Configurar los listeners
+        escuchar(controlador);
         setLocationRelativeTo(null);
 
-        // Ajustar propiedades del JFrame
-        setLocationRelativeTo(null); // Centrar ventana
+        
+        setLocationRelativeTo(null); 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
       public void escuchar(ControladorPrincipal controlador)

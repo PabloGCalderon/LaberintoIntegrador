@@ -15,7 +15,7 @@ public class MatrizLaberinto {
     private Enemigo enemigo;
     
     public MatrizLaberinto () {
-        //Definir tamaño matriz
+        
         laberinto = new int [][]{
         {3,3,3,3,3,3,3,3,3,3,3,3},
         {3,0,0,3,0,0,0,3,0,0,0,3},
@@ -31,7 +31,7 @@ public class MatrizLaberinto {
         {3,3,3,3,3,3,3,3,3,3,3,3}
         };
         
-        //Inicializar al personaje y al enemigo
+       
         
          personaje = new Personaje(1,1);
          enemigo = new Enemigo(5,9);

@@ -4,7 +4,10 @@
  */
 package vista;
 
+import controlador.ControladorLaberinto;
 import controlador.ControladorPrincipal;
+import controlador.HiloTemporizador;
+
 
 /**
  *
@@ -12,12 +15,35 @@ import controlador.ControladorPrincipal;
  */
 public class JuegoGUI extends javax.swing.JFrame {
 
+    private HiloTemporizador hiloTemporizador;
+    private Thread threadTemporizador;
 
-    
     public JuegoGUI(ControladorPrincipal controlador) {
         initComponents();
         escuchar(controlador);
+
+        setVisible(true);
+        
+        hiloTemporizador = new HiloTemporizador(35, jlTiempo); 
+        threadTemporizador = new Thread(hiloTemporizador);
+        threadTemporizador.start();
     }
+
+   public void pausarTemporizador() {
+        if (hiloTemporizador != null) {
+            hiloTemporizador.pausar();
+        }
+    }
+
+
+    public void reanudarTemporizador() {
+        if (hiloTemporizador != null) {
+            hiloTemporizador.pausar();  
+        }
+    }
+    
+ 
+    
     
    public void escuchar(ControladorPrincipal controlador)
      {
@@ -37,6 +63,7 @@ public class JuegoGUI extends javax.swing.JFrame {
 
         btnPausa = new javax.swing.JButton();
         panelJuego1 = new vista.PanelJuego();
+        jlTiempo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,6 +92,10 @@ public class JuegoGUI extends javax.swing.JFrame {
 
         getContentPane().add(panelJuego1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 600, 600));
 
+        jlTiempo.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jlTiempo.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jlTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 100, 80));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Laberinto.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -83,6 +114,7 @@ public class JuegoGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPausa;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jlTiempo;
     private vista.PanelJuego panelJuego1;
     // End of variables declaration//GEN-END:variables
 }

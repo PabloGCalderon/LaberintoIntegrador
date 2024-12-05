@@ -17,31 +17,47 @@ import vista.PanelJuego;
  */
 public class Hilo extends Thread
 {
+    private ControladorPrincipal controladorPrincipal;
     private ControladorLaberinto controlador;
     private MatrizLaberinto matriz;
     private Enemigo enemigo;
     private PanelJuego panelJuego;
-    
-  public Hilo(ControladorLaberinto controlador, MatrizLaberinto matriz, Enemigo enemigo, PanelJuego panelJuego) {
-    this.controlador = controlador;
-    this.enemigo = enemigo;
-    this.matriz = matriz;
-    this.panelJuego = panelJuego;
-}    
-  
-    public void run()
+    private boolean pausado;
+ 
+
+    public Hilo(ControladorLaberinto controlador, MatrizLaberinto matriz, Enemigo enemigo, PanelJuego panelJuego, ControladorPrincipal controladorPrincipal) 
     {
-        while(true)
-        {
+        this.controladorPrincipal = controladorPrincipal;
+        this.controlador = controlador;
+        this.enemigo = enemigo;
+        this.matriz = matriz;
+        this.panelJuego = panelJuego;
+    }
+
+    @Override
+     public void run() {
+        while (true) {
+            synchronized (this) {
+                while (pausado) {
+                    try {
+                        wait();  
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            }
+
             try {
-                 enemigo.movAleatorio(matriz.getlaberinto());
-                 controlador.muerteEnemigo();
-                 panelJuego.repaint();
+                if (!pausado) {
+                    enemigo.movAleatorio(matriz.getlaberinto());
+                    controlador.muerteEnemigo();
+                    panelJuego.repaint();
+                    panelJuego.requestFocusInWindow();
+                }
                 sleep(200);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }    
-    
+  }
 }

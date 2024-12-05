@@ -18,16 +18,16 @@ public class DerrotaGUI extends javax.swing.JFrame {
      */
     public DerrotaGUI(ControladorLaberinto controlador) 
     {
-        setUndecorated(true); // Quita la decoración del frame.
-        setBackground(new Color(0, 0, 0, 0)); // Permite transparencia
+        setUndecorated(true); 
+        setBackground(new Color(0, 0, 0, 0));
         
         initComponents();
         escuchar(controlador);
         
         setLocationRelativeTo(null);
 
-        // Ajustar propiedades del JFrame
-        setLocationRelativeTo(null); // Centrar ventana
+   
+        setLocationRelativeTo(null); 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
